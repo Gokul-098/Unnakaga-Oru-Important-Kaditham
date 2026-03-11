@@ -16,7 +16,7 @@ align-items:center;
 background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ffdde1);
 }
 
-/* Card */
+/* card */
 
 .card{
 background:rgba(255,255,255,0.85);
@@ -101,6 +101,27 @@ animation:flyRandom linear forwards, flutter 0.3s infinite alternate;
 100%{transform:scale(1.15);}
 }
 
+/* roses */
+
+.rose{
+position:absolute;
+bottom:-50px;
+animation:floatUp linear forwards;
+}
+
+/* angels */
+
+.angel{
+position:absolute;
+animation:angelFly linear forwards;
+}
+
+@keyframes angelFly{
+0%{transform:translate(0,0);}
+50%{transform:translate(200px,-150px);}
+100%{transform:translate(-200px,200px);}
+}
+
 </style>
 </head>
 
@@ -114,7 +135,8 @@ Ana pesuna theriyum nee oru Lossu nu 😜
 Neeye sollu ama va illa ya?
 </h2>
 
-<button class="yes">Ama Naan Lossu 😅</button>
+<button class="yes" onclick="yesClick()">Ama Naan Lossu 😅</button>
+
 <button class="no" id="noBtn" onclick="noClick()">Illa Naan Nalla Ponnu 😎</button>
 
 <p id="msg"></p>
@@ -125,6 +147,14 @@ Neeye sollu ama va illa ya?
 
 let count=0;
 let noBtn=document.getElementById("noBtn");
+
+/* YES BUTTON */
+
+function yesClick(){
+window.location="letter.html";
+}
+
+/* NO BUTTON */
 
 function noClick(){
 
@@ -140,26 +170,17 @@ msg.innerHTML="Nijam sollu 😜";
 
 else if(count==3){
 msg.innerHTML="Button ah pidika mudiyuma paakalam 😆";
-
-/* move button */
-
 noBtn.style.position="absolute";
 moveButton();
 }
 
 else if(count<=6){
-
 moveButton();
 }
 
 else{
-
 msg.innerHTML="Seri seri... unaku option illa 😜";
-
-/* remove button */
-
 noBtn.style.display="none";
-
 }
 
 }
@@ -223,6 +244,54 @@ butterfly.remove();
 }
 
 setInterval(createButterfly,2000);
+
+/* roses */
+
+function createRose(){
+
+let rose=document.createElement("div");
+rose.classList.add("rose");
+
+rose.innerHTML="🌹";
+
+rose.style.left=Math.random()*100+"vw";
+rose.style.fontSize=(35+Math.random()*30)+"px";
+rose.style.animationDuration=(7+Math.random()*6)+"s";
+
+document.body.appendChild(rose);
+
+setTimeout(()=>{
+rose.remove();
+},12000);
+
+}
+
+setInterval(createRose,900);
+
+/* angels */
+
+function createAngel(){
+
+let angel=document.createElement("div");
+angel.classList.add("angel");
+
+angel.innerHTML="👼";
+
+angel.style.top=Math.random()*100+"vh";
+angel.style.left=Math.random()*100+"vw";
+
+angel.style.fontSize=(40+Math.random()*25)+"px";
+angel.style.animationDuration=(12+Math.random()*8)+"s";
+
+document.body.appendChild(angel);
+
+setTimeout(()=>{
+angel.remove();
+},15000);
+
+}
+
+setInterval(createAngel,4000);
 
 </script>
 
